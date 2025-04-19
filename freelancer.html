@@ -1,0 +1,297 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreelanceHub - Connect with Freelancers and Clients</title>
+  <link rel="stylesheet" href="freelancer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>FreelanceHub</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#" id="nav-home">Home</a></li>
+          <li><a href="#" id="nav-freelancers">Find Freelancers</a></li>
+          <li><a href="#" id="nav-login">Login</a></li>
+          <li><a href="#" id="nav-register" class="btn-primary">Register</a></li>
+          <li><a href="#" id="nav-dashboard" class="hidden">Dashboard</a></li>
+          <li><a href="#" id="nav-logout" class="hidden">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content area that changes based on navigation -->
+  <main id="app">
+    <!-- Home Page Content -->
+    <section id="home-page" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h2>Find the perfect match for your project</h2>
+          <p>Connect with skilled freelancers or find exciting projects as a freelancer</p>
+          <div class="hero-buttons">
+            <button id="join-as-client" class="btn-primary">Hire a Freelancer</button>
+            <button id="join-as-freelancer" class="btn-secondary">Work as a Freelancer</button>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://via.placeholder.com/600x400" alt="Freelancing Platform">
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Page -->
+    <section id="register-page" class="hidden">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-options">
+            <button id="show-freelancer-register" class="auth-option-btn active">Join as Freelancer</button>
+            <button id="show-client-register" class="auth-option-btn">Join as Client</button>
+          </div>
+          
+          <!-- Freelancer Registration Form -->
+          <div id="freelancer-register-form" class="auth-form">
+            <h2>Create a Freelancer Account</h2>
+            <form id="freelancer-form">
+              <div class="form-group">
+                <label for="freelancer-name">Full Name</label>
+                <input type="text" id="freelancer-name" required>
+              </div>
+              <div class="form-group">
+                <label for="freelancer-email">Email Address</label>
+                <input type="email" id="freelancer-email" required>
+              </div>
+              <div class="form-group">
+                <label for="freelancer-password">Password</label>
+                <input type="password" id="freelancer-password" required>
+              </div>
+              <div class="form-group">
+                <label for="freelancer-skills">Skills (comma separated)</label>
+                <input type="text" id="freelancer-skills" required placeholder="e.g. JavaScript, Web Design, Python">
+              </div>
+              <div class="form-group">
+                <label for="freelancer-portfolio">Portfolio URL</label>
+                <input type="url" id="freelancer-portfolio" placeholder="https://yourportfolio.com">
+              </div>
+              <div class="form-group">
+                <label for="freelancer-rate">Hourly Rate ($)</label>
+                <input type="number" id="freelancer-rate" min="0">
+              </div>
+              <button type="submit" class="btn-primary">Register as Freelancer</button>
+            </form>
+            <p class="auth-redirect">Already have an account? <a href="#" id="go-to-login">Login</a></p>
+          </div>
+          
+          <!-- Client Registration Form -->
+          <div id="client-register-form" class="auth-form hidden">
+            <h2>Create a Client Account</h2>
+            <form id="client-form">
+              <div class="form-group">
+                <label for="client-name">Full Name</label>
+                <input type="text" id="client-name" required>
+              </div>
+              <div class="form-group">
+                <label for="client-email">Email Address</label>
+                <input type="email" id="client-email" required>
+              </div>
+              <div class="form-group">
+                <label for="client-password">Password</label>
+                <input type="password" id="client-password" required>
+              </div>
+              <div class="form-group">
+                <label for="client-company">Company (Optional)</label>
+                <input type="text" id="client-company">
+              </div>
+              <button type="submit" class="btn-primary">Register as Client</button>
+            </form>
+            <p class="auth-redirect">Already have an account? <a href="#" id="go-to-login-from-client">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Page -->
+    <section id="login-page" class="hidden">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-options">
+            <button id="show-freelancer-login" class="auth-option-btn active">Freelancer Login</button>
+            <button id="show-client-login" class="auth-option-btn">Client Login</button>
+          </div>
+          
+          <div class="auth-form" id="login-form">
+            <h2>Login to Your Account</h2>
+            <form id="login-form-element">
+              <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+              </div>
+              <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+              </div>
+              <input type="hidden" id="login-user-type" value="freelancer">
+              <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="auth-redirect">Don't have an account? <a href="#" id="go-to-register">Register</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Freelancers Browse Page -->
+    <section id="freelancers-page" class="hidden">
+      <div class="container">
+        <h2>Browse Talented Freelancers</h2>
+        
+        <div class="search-container">
+          <form id="search-form">
+            <input type="text" id="search-skills" placeholder="Search by skills...">
+            <button type="submit" class="btn-primary">Search</button>
+          </form>
+        </div>
+        
+        <div id="freelancers-list" class="freelancers-grid">
+          <!-- Freelancers will be loaded here dynamically -->
+          <div class="freelancer-card placeholder">
+            <div class="freelancer-info">
+              <h3>Loading freelancers...</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Freelancer Detail Page -->
+    <section id="freelancer-detail-page" class="hidden">
+      <div class="container">
+        <div class="back-button">
+          <a href="#" id="back-to-freelancers"><i class="fas fa-arrow-left"></i> Back to all freelancers</a>
+        </div>
+        
+        <div id="freelancer-profile" class="profile-container">
+          <!-- Freelancer details will be loaded here dynamically -->
+          <div class="profile-header">
+            <h2 id="profile-name">Freelancer Name</h2>
+            <p class="rate"><span id="profile-rate">$0</span>/hr</p>
+          </div>
+          
+          <div class="profile-content">
+            <div class="skills-section">
+              <h3>Skills</h3>
+              <div id="profile-skills" class="skills-tags">
+                <!-- Skills will be added here -->
+              </div>
+            </div>
+            
+            <div class="portfolio-section">
+              <h3>Portfolio</h3>
+              <p id="profile-portfolio">Portfolio URL will appear here</p>
+            </div>
+            
+            <div class="contact-section">
+              <button id="contact-freelancer" class="btn-primary">Contact Freelancer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Page -->
+    <section id="dashboard-page" class="hidden">
+      <div class="container">
+        <h2>Welcome, <span id="user-name">User</span>!</h2>
+        <div class="dashboard-content">
+          <!-- Content depends on user type (freelancer or client) -->
+          <div id="freelancer-dashboard" class="hidden">
+            <div class="dashboard-card">
+              <h3>Your Profile</h3>
+              <div class="profile-info">
+                <p><strong>Name:</strong> <span id="dashboard-name"></span></p>
+                <p><strong>Email:</strong> <span id="dashboard-email"></span></p>
+                <p><strong>Skills:</strong> <span id="dashboard-skills"></span></p>
+                <p><strong>Hourly Rate:</strong> $<span id="dashboard-rate"></span></p>
+                <p><strong>Portfolio:</strong> <a id="dashboard-portfolio" href="#" target="_blank">View Portfolio</a></p>
+              </div>
+              <button class="btn-secondary">Edit Profile</button>
+            </div>
+          </div>
+          
+          <div id="client-dashboard" class="hidden">
+            <div class="dashboard-card">
+              <h3>Your Profile</h3>
+              <div class="profile-info">
+                <p><strong>Name:</strong> <span id="dashboard-client-name"></span></p>
+                <p><strong>Email:</strong> <span id="dashboard-client-email"></span></p>
+                <p><strong>Company:</strong> <span id="dashboard-client-company"></span></p>
+              </div>
+              <button class="btn-secondary">Edit Profile</button>
+            </div>
+            
+            <div class="dashboard-card">
+              <h3>Find Freelancers</h3>
+              <p>Search our database of talented freelancers to find the perfect match for your project.</p>
+              <button id="dashboard-find-freelancers" class="btn-primary">Browse Freelancers</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Success Alert -->
+    <div id="success-alert" class="alert-container hidden">
+      <div class="alert success">
+        <p id="success-message">Operation successful!</p>
+        <span class="close-alert">&times;</span>
+      </div>
+    </div>
+    
+    <!-- Error Alert -->
+    <div id="error-alert" class="alert-container hidden">
+      <div class="alert error">
+        <p id="error-message">An error occurred!</p>
+        <span class="close-alert">&times;</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FreelanceHub. All rights reserved.</p>
+    </div>
+  </footer>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyC_4ImmkQfHuhpQuFtAjtb0485ZhVxV3p4",
+  authDomain: "freelancehub-a1f32.firebaseapp.com",
+  projectId: "freelancehub-a1f32",
+  storageBucket: "freelancehub-a1f32.firebasestorage.app",
+  messagingSenderId: "443483995651",
+  appId: "1:443483995651:web:7d49449f605aeb183b5836",
+  measurementId: "G-PMN8VY94Y3"
+};
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    
+    // Make Firebase functions available globally
+    window.db = db;
+    window.collection = collection;
+    window.addDoc = addDoc;
+  </script>
+<script src="freelancer.css"></script>
+</body>
+
+</html>
