@@ -102,7 +102,7 @@ nav {
 /* Hero Section */
 .hero {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #EAE7DC 0%, #EAE7DC 100%);
+    background: linear-gradient(135deg, #6051ae 0%, #c0e7e6 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -115,7 +115,6 @@ nav {
 
 .hero-content {
     font-family: 'Poppins', sans-serif;
-    font-family: 'Lato', sans-serif;
     max-width: 800px;
 }
 
@@ -179,7 +178,7 @@ nav {
 }
 
 .hire-freelancer::before {
-    background-color: #3a86ff;
+    background-color: #5b6472;
 }
 
 .be-freelancer::before {
@@ -188,7 +187,6 @@ nav {
 
 .option-card h2 {
     font-family: 'Poppins', sans-serif;
-
     font-size: 1.8rem;
     margin: 1.5rem 0;
     font-weight: 700;
@@ -347,6 +345,8 @@ nav {
 }
 
 .testimonial-author {
+    font-family: 'Poppins', sans-serif;
+
     display: flex;
     align-items: center;
 }
@@ -360,57 +360,75 @@ nav {
 }
 
 .author-info h4 {
+    font-family: 'Poppins', sans-serif;
+
     margin-bottom: 0.2rem;
 }
 
 .author-info p {
+    font-family: 'Poppins', sans-serif;
+
     color: #666;
     font-size: 0.9rem;
 }
 
 /* CTA Section */
 .cta {
+    font-family: 'Poppins', sans-serif;
+
     padding: 5rem 2rem;
-    background: linear-gradient(135deg, #3a86ff 0%, #ff006e 100%);
+    background: linear-gradient(135deg, #6051ae 0%, #c0e7e6 100%);
     color: white;
     text-align: center;
 }
 
 .cta-container {
+    font-family: 'Poppins', sans-serif;
+
     max-width: 800px;
     margin: 0 auto;
 }
 
-.cta h2 {
+.cta h2 {    font-family: 'Poppins', sans-serif;
+
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
 }
 
 .cta p {
+    font-family: 'Poppins', sans-serif;
+
     margin-bottom: 2rem;
     font-size: 1.2rem;
     opacity: 0.9;
 }
 
 .cta .btn {
+    font-family: 'Poppins', sans-serif;
+
     background-color: white;
-    color: #3a86ff;
+    color: #6193ad;
     font-size: 1.1rem;
     padding: 1rem 2rem;
 }
 
 .cta .btn:hover {
+    font-family: 'Poppins', sans-serif;
+
     background-color: #f0f0f0;
 }
 
 /* Footer */
 footer {
+    font-family: 'Poppins', sans-serif;
+
     background-color: #2d3748;
     color: white;
     padding: 4rem 2rem 2rem;
 }
 
 .footer-container {
+    
     font-family: 'Poppins', sans-serif;
 
     max-width: 1200px;
@@ -480,7 +498,7 @@ footer {
 }
 
 .copyright {
-    font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif;
 
     margin-top: 3rem;
     text-align: center;
