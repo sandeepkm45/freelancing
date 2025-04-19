@@ -20,17 +20,17 @@
         <nav>
             <a href="#" class="logo">Freelance's <span>Hub</span></a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="chatbot.html">ChatBot</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="chatbot.html">ChatBox</a></li>
                 <li><a href="#">Find Talent</a></li>
-                <li><a href="#">How It Works</a></li>
+                <li><a href="how.html">How It Works</a></li>
                 <li><a href="about.html">About Us</a></li>
             </ul>
             <a href="sign.html" class="btn">Sign In</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    
     <section class="hero">
         <div class="hero-content">
             <h1>Connect with the best freelance talent</h1>
@@ -39,7 +39,7 @@
         </div>
     </section>
 
-    <!-- Options Section -->
+    
     <section class="options">
         <div class="option-card hire-freelancer" id="hireOption">
             <div class="option-icon">👥</div>
@@ -55,7 +55,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+   
     <section class="features">
         <div class="features-container">
             <div class="section-title">
@@ -89,7 +89,7 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
+    
     <!-- <section class="testimonials">
         <div class="testimonials-container">
             <div class="section-title">
@@ -116,7 +116,7 @@
         </div>
     </section> -->
 
-    <!-- CTA Section -->
+    
     <section class="cta">
         <div class="cta-container">
             <h2>Ready to get started?</h2>
@@ -127,7 +127,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -189,11 +189,11 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
-            // Option card hover effects
+            
             const hireOption = document.getElementById('hireOption');
             const freelancerOption = document.getElementById('freelancerOption');
 
-            // Navigation menu scroll effect
+            
             const header = document.querySelector('header');
 
             window.addEventListener('scroll', function () {
@@ -206,7 +206,7 @@
                 }
             });
 
-            // Smooth scrolling for anchor links
+            
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -223,37 +223,37 @@
                 });
             });
 
-            // Button click handlers for the two main options
+            
             document.querySelector('#hireOption .btn').addEventListener('click', function () {
-                // Redirect to hire freelancer page
+                
                 console.log("Navigating to hire freelancer page");
                 // window.location.href = '/hire-freelancer';
                 alert("Redirecting to post a job page... (Demo only)");
             });
 
             document.querySelector('#freelancerOption .btn').addEventListener('click', function () {
-                // Redirect to become freelancer page
+                
                 console.log("Navigating to become freelancer page");
                 // window.location.href = '/become-freelancer';
                 alert("Redirecting to find projects page... (Demo only)");
             });
 
-            // Get Started button in hero section
+            
             document.querySelector('.hero .btn').addEventListener('click', function () {
-                // Smooth scroll to options section
+                
                 document.querySelector('.options').scrollIntoView({
                     behavior: 'smooth'
                 });
             });
 
-            // Create account button in CTA section
+            
             document.querySelector('.cta .btn').addEventListener('click', function () {
                 console.log("Navigating to signup page");
                 // window.location.href = '/signup';
                 alert("Redirecting to account creation page... (Demo only)");
             });
 
-            // Sign In button in header
+            
             document.querySelector('header .btn').addEventListener('click', function () {
                 console.log("Opening sign in modal");
                 openSignInModal();
