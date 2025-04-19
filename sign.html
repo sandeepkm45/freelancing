@@ -197,8 +197,8 @@
         
         <div class="signin-options">
             <!-- Google Sign-In Button -->
-            <button id="googleSignIn">
-                <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.18.0/google.svg" alt="Google logo">
+            <button id="googleSignIn" type="button">
+                <img src="/api/placeholder/20/20" alt="Google logo">
                 Sign in with Google
             </button>
             
@@ -228,15 +228,15 @@
         
         <!-- Profile information after successful login -->
         <div id="profile">
-            <img id="userPhoto" src="" alt="Profile Photo">
+            <img id="userPhoto" src="/api/placeholder/80/80" alt="Profile Photo">
             <h2 id="userName"></h2>
             <p id="userEmail"></p>
-            <button id="signOut">Sign Out</button>
+            <button id="signOut" type="button">Sign Out</button>
         </div>
     </div>
 
     <!-- Google's OAuth client library -->
-    <script src="https://accounts.google.com/gsi/client"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <script>
         // Your Google Client ID goes here
@@ -244,28 +244,80 @@
         
         // Initialize the Google Sign-In
         function initializeGoogleSignIn() {
-            google.accounts.id.initialize({
-                client_id: CLIENT_ID,
-                callback: handleCredentialResponse
-            });
+            // Check if Google API is loaded
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.initialize({
+                    client_id: CLIENT_ID,
+                    callback: handleCredentialResponse
+                });
+            } else {
+                console.error('Google API not loaded');
+                // Try again after a short delay
+                setTimeout(initializeGoogleSignIn, 1000);
+                return;
+            }
             
             // Add click event for custom button
             document.getElementById('googleSignIn').addEventListener('click', () => {
-                google.accounts.id.prompt();
+                if (typeof google !== 'undefined' && google.accounts) {
+                    google.accounts.id.prompt();
+                } else {
+                    console.error('Google API not loaded');
+                }
             });
+        }
+        
+        // Handle the Google Sign-In response
+        function handleCredentialResponse(response) {
+            // Check if response is valid
+            if (!response || !response.credential) {
+                console.error('Invalid authentication response');
+                return;
+            }
             
-            // Handle sign out
-            document.getElementById('signOut').addEventListener('click', signOut);
-            
-            // Handle regular sign in form
-            document.getElementById('signinForm').addEventListener('submit', handleFormSubmit);
+            try {
+                // Get the JWT token
+                const token = response.credential;
+                
+                // Decode the JWT token to get user information
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                
+                // Display user info
+                document.getElementById('userName').textContent = payload.name || 'Unknown User';
+                document.getElementById('userEmail').textContent = payload.email || '';
+                document.getElementById('userPhoto').src = payload.picture || '/api/placeholder/80/80';
+                
+                // Hide sign-in options and show profile info
+                document.querySelector('.signin-options').style.display = 'none';
+                document.querySelector('.signup-link').style.display = 'none';
+                document.getElementById('profile').style.display = 'block';
+                
+                // Store the token in localStorage for session management
+                localStorage.setItem('google_auth_token', token);
+                
+                // You can send this token to your backend for verification
+                // sendTokenToBackend(token);
+            } catch (error) {
+                console.error('Error processing credentials:', error);
+            }
         }
         
         // Handle form submission
         function handleFormSubmit(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
+            
+            // Basic validation
+            if (!email) {
+                alert('Please enter your email');
+                return;
+            }
+            
+            if (!password) {
+                alert('Please enter your password');
+                return;
+            }
             
             // Here you would normally send these credentials to your backend
             // For demo purposes, we'll simulate a successful login
@@ -278,10 +330,12 @@
         
         // Simulate successful login (for demo purposes)
         function simulateSuccessfulLogin(userData) {
+            if (!userData) return;
+            
             // Display user info
-            document.getElementById('userName').textContent = userData.name;
-            document.getElementById('userEmail').textContent = userData.email;
-            document.getElementById('userPhoto').src = userData.picture;
+            document.getElementById('userName').textContent = userData.name || 'Unknown User';
+            document.getElementById('userEmail').textContent = userData.email || '';
+            document.getElementById('userPhoto').src = userData.picture || '/api/placeholder/80/80';
             
             // Hide sign-in options and show profile info
             document.querySelector('.signin-options').style.display = 'none';
@@ -290,31 +344,6 @@
             
             // Store user data in localStorage for session management
             localStorage.setItem('freelance_user', JSON.stringify(userData));
-        }
-        
-        // Handle the Google Sign-In response
-        function handleCredentialResponse(response) {
-            // Get the JWT token
-            const token = response.credential;
-            
-            // Decode the JWT token to get user information
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            
-            // Display user info
-            document.getElementById('userName').textContent = payload.name;
-            document.getElementById('userEmail').textContent = payload.email;
-            document.getElementById('userPhoto').src = payload.picture;
-            
-            // Hide sign-in options and show profile info
-            document.querySelector('.signin-options').style.display = 'none';
-            document.querySelector('.signup-link').style.display = 'none';
-            document.getElementById('profile').style.display = 'block';
-            
-            // Store the token in localStorage for session management
-            localStorage.setItem('google_auth_token', token);
-            
-            // You can send this token to your backend for verification
-            // sendTokenToBackend(token);
         }
         
         // Send token to your backend (implement this function)
@@ -327,7 +356,12 @@
                 },
                 body: JSON.stringify({ token })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 console.log('Success:', data);
                 // Handle successful server authentication
@@ -339,7 +373,10 @@
         
         // Sign out function
         function signOut() {
-            google.accounts.id.disableAutoSelect();
+            // Check if Google API is loaded
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.disableAutoSelect();
+            }
             
             // Clear local storage
             localStorage.removeItem('google_auth_token');
@@ -351,7 +388,7 @@
             document.getElementById('profile').style.display = 'none';
             document.getElementById('userName').textContent = '';
             document.getElementById('userEmail').textContent = '';
-            document.getElementById('userPhoto').src = '';
+            document.getElementById('userPhoto').src = '/api/placeholder/80/80';
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
         }
@@ -369,9 +406,9 @@
                     const expiryTime = payload.exp * 1000; // Convert to milliseconds
                     if (Date.now() < expiryTime) {
                         // Token still valid
-                        document.getElementById('userName').textContent = payload.name;
-                        document.getElementById('userEmail').textContent = payload.email;
-                        document.getElementById('userPhoto').src = payload.picture;
+                        document.getElementById('userName').textContent = payload.name || 'Unknown User';
+                        document.getElementById('userEmail').textContent = payload.email || '';
+                        document.getElementById('userPhoto').src = payload.picture || '/api/placeholder/80/80';
                         
                         document.querySelector('.signin-options').style.display = 'none';
                         document.querySelector('.signup-link').style.display = 'none';
@@ -391,9 +428,9 @@
             if (userData) {
                 try {
                     const user = JSON.parse(userData);
-                    document.getElementById('userName').textContent = user.name;
-                    document.getElementById('userEmail').textContent = user.email;
-                    document.getElementById('userPhoto').src = user.picture;
+                    document.getElementById('userName').textContent = user.name || 'Unknown User';
+                    document.getElementById('userEmail').textContent = user.email || '';
+                    document.getElementById('userPhoto').src = user.picture || '/api/placeholder/80/80';
                     
                     document.querySelector('.signin-options').style.display = 'none';
                     document.querySelector('.signup-link').style.display = 'none';
@@ -406,8 +443,18 @@
             }
         }
         
-        // Initialize authentication when page loads
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Handle sign out
+            document.getElementById('signOut').addEventListener('click', signOut);
+            
+            // Handle regular sign in form
+            document.getElementById('signinForm').addEventListener('submit', handleFormSubmit);
+        }
+        
+        // Initialize when page loads
         window.onload = function() {
+            setupEventListeners();
             initializeGoogleSignIn();
             checkAuthStatus();
         };
