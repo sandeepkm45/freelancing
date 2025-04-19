@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreelanceHub - Create Account</title>
@@ -9,17 +12,19 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="index.html" class="logo">Freelance's <span>Hub</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Browse Jobs</a></li>
-                <li><a href="#">Find Talent</a></li>
-                <li><a href="#">How It Works</a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-            <a href="sign.html" class="btn">Sign In</a>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="logo">Freelancer's Hub</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chatbot.html">ChatBox</a></li>
+                    <li><a href="#">Find Talent</a></li>
+                    <li><a href="how.html">How It Works</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+                <div class="menu-btn">☰</div>
+            </nav>
+        </div>
     </header>
 
     <div class="container">
@@ -46,7 +51,7 @@
         </div>
         
         <div class="form-container">
-            <!-- Step 1: Basic Info -->
+            
             <div class="form-step active" id="step1">
                 <div class="form-row">
                     <div class="form-group">
@@ -86,9 +91,9 @@
                 </div>
             </div>
             
-            <!-- Step 2: Client/Freelancer Specific -->
+            
             <div class="form-step" id="step2">
-                <!-- Client fields -->
+                
                 <div id="clientFields">
                     <div class="form-group">
                         <label for="companyName">Company Name (Optional)</label>
@@ -123,7 +128,7 @@
                     </div>
                 </div>
                 
-                <!-- Freelancer fields -->
+                
                 <div id="freelancerFields" style="display: none;">
                     <div class="form-group">
                         <label for="title">Professional Title</label>
@@ -171,7 +176,7 @@
                 </div>
             </div>
             
-            <!-- Step 3: Location & Contact -->
+            
             <div class="form-step" id="step3">
                 <div class="form-group">
                     <label for="country">Country</label>
@@ -225,7 +230,7 @@
                 </div>
             </div>
             
-            <!-- Success Message -->
+           
             <div class="success-message" id="successMessage">
                 <div class="success-icon">✓</div>
                 <h2>Account Created Successfully!</h2>
