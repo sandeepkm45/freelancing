@@ -12,6 +12,7 @@
     <title>FreelanceHub - Connect with Talent</title>
     <!-- <style> -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- </style> -->
 </head>
 
@@ -26,7 +27,21 @@
                 <li><a href="how.html">How It Works</a></li>
                 <li><a href="about.html">About Us</a></li>
             </ul>
-            <a href="sign.html" class="btn">Sign In</a>
+            <div id="g_id_onload"
+     data-client_id="141834255582-c8802940tfh2s3u88b55idmsf92fpa3d.apps.googleusercontent.com"
+     data-login_uri="https://yourwebsite.com/auth/callback"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular"
+     data-logo_alignment="left">
+</div>
+
         </nav>
     </header>
 
@@ -261,6 +276,30 @@
             });
         });
     </script>
+    <script>
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+      
+          // Send this token to your server for verification
+          fetch('/auth/google', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: response.credential })
+          });
+        }
+      
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "141834255582-c8802940tfh2s3u88b55idmsf92fpa3d.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }
+          );
+        }
+      </script>
+      
 </body>
 
 </html>
