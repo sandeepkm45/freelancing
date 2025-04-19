@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreelanceHub - Create Account</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styling.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Freelance's <span>Hub</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Browse Jobs</a></li>
+                <li><a href="#">Find Talent</a></li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+            <a href="sign.html" class="btn">Sign In</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Create Your FreelanceHub Account</h1>
+        <p class="tagline">Join our community of freelancers and clients from around the world</p>
+        
+        <div class="account-type">
+            <div class="account-option active" id="clientOption">
+                <div class="account-icon">👥</div>
+                <h2>I want to hire</h2>
+                <p>Post jobs and hire talented freelancers</p>
+            </div>
+            <div class="account-option" id="freelancerOption">
+                <div class="account-icon">💼</div>
+                <h2>I want to work</h2>
+                <p>Find work and grow your freelance business</p>
+            </div>
+        </div>
+        
+        <div class="step-indicator">
+            <div class="step active"></div>
+            <div class="step"></div>
+            <div class="step"></div>
+        </div>
+        
+        <div class="form-container">
+            <!-- Step 1: Basic Info -->
+            <div class="form-step active" id="step1">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                    <small>Must be at least 8 characters with a number and a special character</small>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" required>
+                </div>
+                
+                <div class="form-actions">
+                    <div></div>
+                    <button class="btn" id="nextToStep2">Continue</button>
+                </div>
+                
+                <div class="social-signup">
+                    <div class="divider"><span>OR</span></div>
+                    <button id="googleSignUp">
+                        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.18.0/google.svg" alt="Google logo">
+                        Sign up with Google
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Client/Freelancer Specific -->
+            <div class="form-step" id="step2">
+                <!-- Client fields -->
+                <div id="clientFields">
+                    <div class="form-group">
+                        <label for="companyName">Company Name (Optional)</label>
+                        <input type="text" id="companyName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry" class="form-control" required>
+                            <option value="">Select your industry</option>
+                            <option value="tech">Technology</option>
+                            <option value="design">Design & Creative</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="writing">Writing & Content</option>
+                            <option value="finance">Finance & Accounting</option>
+                            <option value="legal">Legal</option>
+                            <option value="engineering">Engineering & Architecture</option>
+                            <option value="education">Education</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="companySize">Company Size</label>
+                        <select id="companySize" class="form-control" required>
+                            <option value="">Select company size</option>
+                            <option value="solo">Just me</option>
+                            <option value="small">2-10 employees</option>
+                            <option value="medium">11-50 employees</option>
+                            <option value="large">51-200 employees</option>
+                            <option value="enterprise">201+ employees</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Freelancer fields -->
+                <div id="freelancerFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="title">Professional Title</label>
+                        <input type="text" id="title" class="form-control" placeholder="e.g. Full Stack Developer, Graphic Designer">
+                    </div>
+                    <div class="form-group">
+                        <label for="expertise">Main Expertise</label>
+                        <select id="expertise" class="form-control" required>
+                            <option value="">Select your expertise</option>
+                            <option value="development">Web Development</option>
+                            <option value="design">Graphic Design</option>
+                            <option value="writing">Content Writing</option>
+                            <option value="marketing">Digital Marketing</option>
+                            <option value="seo">SEO</option>
+                            <option value="translation">Translation</option>
+                            <option value="video">Video Editing</option>
+                            <option value="data">Data Analysis</option>
+                            <option value="mobile">Mobile Development</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Experience Level</label>
+                        <select id="experience" class="form-control" required>
+                            <option value="">Select experience level</option>
+                            <option value="entry">Entry Level (0-1 years)</option>
+                            <option value="intermediate">Intermediate (1-3 years)</option>
+                            <option value="experienced">Experienced (3-5 years)</option>
+                            <option value="expert">Expert (5+ years)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Skills</label>
+                        <div class="skills-container" id="skillsContainer"></div>
+                        <div class="add-skill">
+                            <input type="text" id="skillInput" class="form-control" placeholder="Add a skill">
+                            <button type="button" id="addSkill">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn" id="backToStep1" style="background-color: #f1f1f1; color: #333;">Back</button>
+                    <button class="btn" id="nextToStep3">Continue</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Location & Contact -->
+            <div class="form-step" id="step3">
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" class="form-control" required>
+                        <option value="">Select your country</option>
+                        <option value="us">United States</option>
+                        <option value="ca">Canada</option>
+                        <option value="gb">United Kingdom</option>
+                        <option value="au">Australia</option>
+                        <option value="in">India</option>
+                        <option value="de">Germany</option>
+                        <option value="fr">France</option>
+                        <option value="br">Brazil</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>How did you hear about us?</label>
+                    <select id="referral" class="form-control">
+                        <option value="">Select an option</option>
+                        <option value="search">Search Engine</option>
+                        <option value="social">Social Media</option>
+                        <option value="friend">Friend or Colleague</option>
+                        <option value="blog">Blog or Article</option>
+                        <option value="ad">Advertisement</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="termsAgree" required>
+                    <label for="termsAgree">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn" id="backToStep2" style="background-color: #f1f1f1; color: #333;">Back</button>
+                    <button class="btn" id="completeSignup">Create Account</button>
+                </div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✓</div>
+                <h2>Account Created Successfully!</h2>
+                <p>Welcome to FreelanceHub! You're now ready to start using our platform.</p>
+                <div class="form-actions" style="justify-content: center;">
+                    <a href="index.html" class="btn">Go to Homepage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>FreelanceHub</h3>
+                <p>The platform that connects talented freelancers with amazing clients worldwide.</p>
+                <div class="social-links">
+                    <a href="#"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                            </svg></span></a>
+                    <a href="#"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                            </svg></span></a>
+                    <a href="#"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                            </svg></span></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>For Clients</h3>
+                <ul>
+                    <li><a href="#">How to Hire</a></li>
+                    <li><a href="#">Talent Marketplace</a></li>
+                    <li><a href="#">Project Catalog</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>For Freelancers</h3>
+                <ul>
+                    <li><a href="#">How to Find Work</a></li>
+                    <li><a href="#">Direct Contracts</a></li>
+                    <li><a href="#">Find Freelance Jobs</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Help & Support</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Freelancing Tips</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FreelanceHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

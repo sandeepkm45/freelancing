@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Freelancer's Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E5E7EB;
+        }
+
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #4F46E5;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #6B7280;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4F46E5;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #4338CA;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .problem {
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #4F46E5;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .problem-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #374151;
+        }
+
+        .problem-card p {
+            color: #6B7280;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #4F46E5;
+        }
+
+        .solution {
+            background-color: #F3F4F6;
+        }
+
+        .solution-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .solution-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .solution-content h2 {
+            font-size: 36px;
+            color: #4F46E5;
+            margin-bottom: 20px;
+        }
+
+        .solution-content p {
+            margin-bottom: 20px;
+            color: #6B7280;
+        }
+
+        .solution-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .solution-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .features {
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #F9FAFB;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin: 15px 0;
+            color: #374151;
+        }
+
+        .feature-card p {
+            color: #6B7280;
+        }
+
+        .feature-icon {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta .btn {
+            background: white;
+            color: #4F46E5;
+        }
+
+        .cta .btn:hover {
+            background: #E5E7EB;
+        }
+
+        footer {
+            background: #1F2937;
+            color: #E5E7EB;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #D1D5DB;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9CA3AF;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+                cursor: pointer;
+                color: white;
+                font-size: 24px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .solution-wrapper {
+                flex-direction: column;
+            }
+
+            .solution-image {
+                order: -1;
+            }
+        }
+
+        .menu-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Freelancer's Hub</div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Find Jobs</a></li>
+                    <li><a href="#">Hire Talent</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="menu-btn">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Freelancing For Everyone</h1>
+            <p>We're breaking down barriers to help students and beginners start their freelancing journey without financial hurdles or complex requirements.</p>
+            <!-- <a href="#" class="btn">Sign in for Free</a> -->
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>The Problem We're Solving</h2>
+                <p>Today's freelancing platforms create unnecessary barriers for newcomers</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="icon">💰</div>
+                    <h3>No Financial Barriers</h3>
+                    <p>Most platforms require freelancers to purchase initial bids or pay registration fees to start applying for projects, creating a financial hurdle for newcomers.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="icon">📝</div>
+                    <h3>No Formal Requirements</h3>
+                    <p>Many platforms ask for formal business details like GST numbers, which most students or beginners don't have, limiting access for new talent.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="icon">⭐</div>
+                    <h3>Experience Paradox</h3>
+                    <p>Clients demand high ratings and experience, but beginners can't build experience without getting their first opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution">
+        <div class="container">
+            <div class="solution-wrapper">
+                <div class="solution-content fade-in">
+                    <h2>Our Approach Is Different</h2>
+                    <p>At FreelanceStart, we believe that talent shouldn't be hidden behind paywalls or bureaucracy. We've designed our platform specifically for students and beginners to kickstart their freelancing careers.</p>
+                    <p>We've eliminated financial barriers by making our platform completely free to join and apply for projects. No upfront costs, no bid purchases, no premium memberships required to access opportunities.</p>
+                    <p>We've simplified the onboarding process to focus on skills and portfolios rather than formal business requirements. You don't need a company registration or GST number to start working.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                <div class="solution-image fade-in">
+                    <img src="/api/placeholder/500/350" alt="Freelancer working">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>What Makes Us Different</h2>
+                <p>Features designed specifically for beginners and students</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🆓</div>
+                    <h3>Free Applications</h3>
+                    <p>Apply to unlimited projects without purchasing bids or paying any fees.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Beginner-Friendly Projects</h3>
+                    <p>Access projects specifically tagged for beginners looking to build experience.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">👨‍🎓</div>
+                    <h3>Student Verification</h3>
+                    <p>Get a "Student" badge that helps clients who want to support emerging talent.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📚</div>
+                    <h3>Skill Development</h3>
+                    <p>Access free resources and workshops to improve your freelancing skills.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">👥</div>
+                    <h3>Mentorship Program</h3>
+                    <p>Connect with experienced freelancers for guidance and advice.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💼</div>
+                    <h3>Portfolio Builder</h3>
+                    <p>Showcase your work even if you're just starting out with our easy-to-use tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Ready to Start Your Freelancing Journey?</h2>
+            <p class="fade-in">Join thousands of students and beginners who are building their careers without financial barriers.</p>
+            <a href="#" class="btn fade-in">Sign Up For Free</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FreelanceStart</h3>
+                    <p>Breaking down barriers to help students and beginners start their freelancing journey.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Guides</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 FreelanceStart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function() {
+                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

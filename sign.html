@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreelanceHub - Sign In</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            color: #2d3b55;
+            font-size: 24px;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .signin-options {
+            margin-bottom: 30px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #999;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider span {
+            padding: 0 10px;
+            font-size: 14px;
+        }
+        
+        #googleSignIn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        #googleSignIn:hover {
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #googleSignIn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a80d2;
+        }
+        
+        .forgot-password {
+            font-size: 14px;
+            margin-top: 15px;
+            color: #4a90e2;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .signup-link {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .signup-link a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        
+        #profile {
+            display: none;
+            text-align: center;
+        }
+        
+        #userPhoto {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        
+        #userName {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #2d3b55;
+        }
+        
+        #userEmail {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        #signOut {
+            padding: 8px 16px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #666;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        #signOut:hover {
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to FreelanceHub</h1>
+        <p class="tagline">Connect with clients and grow your freelance business</p>
+        
+        <div class="signin-options">
+            <!-- Google Sign-In Button -->
+            <button id="googleSignIn">
+                <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.18.0/google.svg" alt="Google logo">
+                Sign in with Google
+            </button>
+            
+            <div class="divider"><span>OR</span></div>
+            
+            <!-- Regular Sign-In Form -->
+            <form id="signinForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+            
+            <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        
+        <div class="signup-link">
+            New to FreelanceHub? <a href="#">Join now</a>
+        </div>
+        
+        <!-- Profile information after successful login -->
+        <div id="profile">
+            <img id="userPhoto" src="" alt="Profile Photo">
+            <h2 id="userName"></h2>
+            <p id="userEmail"></p>
+            <button id="signOut">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Google's OAuth client library -->
+    <script src="https://accounts.google.com/gsi/client"></script>
+    
+    <script>
+        // Your Google Client ID goes here
+        const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+        
+        // Initialize the Google Sign-In
+        function initializeGoogleSignIn() {
+            google.accounts.id.initialize({
+                client_id: CLIENT_ID,
+                callback: handleCredentialResponse
+            });
+            
+            // Add click event for custom button
+            document.getElementById('googleSignIn').addEventListener('click', () => {
+                google.accounts.id.prompt();
+            });
+            
+            // Handle sign out
+            document.getElementById('signOut').addEventListener('click', signOut);
+            
+            // Handle regular sign in form
+            document.getElementById('signinForm').addEventListener('submit', handleFormSubmit);
+        }
+        
+        // Handle form submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Here you would normally send these credentials to your backend
+            // For demo purposes, we'll simulate a successful login
+            simulateSuccessfulLogin({
+                name: 'Freelancer User',
+                email: email,
+                picture: '/api/placeholder/80/80'
+            });
+        }
+        
+        // Simulate successful login (for demo purposes)
+        function simulateSuccessfulLogin(userData) {
+            // Display user info
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userPhoto').src = userData.picture;
+            
+            // Hide sign-in options and show profile info
+            document.querySelector('.signin-options').style.display = 'none';
+            document.querySelector('.signup-link').style.display = 'none';
+            document.getElementById('profile').style.display = 'block';
+            
+            // Store user data in localStorage for session management
+            localStorage.setItem('freelance_user', JSON.stringify(userData));
+        }
+        
+        // Handle the Google Sign-In response
+        function handleCredentialResponse(response) {
+            // Get the JWT token
+            const token = response.credential;
+            
+            // Decode the JWT token to get user information
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            
+            // Display user info
+            document.getElementById('userName').textContent = payload.name;
+            document.getElementById('userEmail').textContent = payload.email;
+            document.getElementById('userPhoto').src = payload.picture;
+            
+            // Hide sign-in options and show profile info
+            document.querySelector('.signin-options').style.display = 'none';
+            document.querySelector('.signup-link').style.display = 'none';
+            document.getElementById('profile').style.display = 'block';
+            
+            // Store the token in localStorage for session management
+            localStorage.setItem('google_auth_token', token);
+            
+            // You can send this token to your backend for verification
+            // sendTokenToBackend(token);
+        }
+        
+        // Send token to your backend (implement this function)
+        function sendTokenToBackend(token) {
+            // Example using fetch
+            fetch('/api/auth/google', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Handle successful server authentication
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+        // Sign out function
+        function signOut() {
+            google.accounts.id.disableAutoSelect();
+            
+            // Clear local storage
+            localStorage.removeItem('google_auth_token');
+            localStorage.removeItem('freelance_user');
+            
+            // Reset UI
+            document.querySelector('.signin-options').style.display = 'block';
+            document.querySelector('.signup-link').style.display = 'block';
+            document.getElementById('profile').style.display = 'none';
+            document.getElementById('userName').textContent = '';
+            document.getElementById('userEmail').textContent = '';
+            document.getElementById('userPhoto').src = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+        }
+        
+        // Check if user is already signed in
+        function checkAuthStatus() {
+            // Check for Google Auth token
+            const token = localStorage.getItem('google_auth_token');
+            if (token) {
+                try {
+                    // Decode token
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    
+                    // Check if token is expired
+                    const expiryTime = payload.exp * 1000; // Convert to milliseconds
+                    if (Date.now() < expiryTime) {
+                        // Token still valid
+                        document.getElementById('userName').textContent = payload.name;
+                        document.getElementById('userEmail').textContent = payload.email;
+                        document.getElementById('userPhoto').src = payload.picture;
+                        
+                        document.querySelector('.signin-options').style.display = 'none';
+                        document.querySelector('.signup-link').style.display = 'none';
+                        document.getElementById('profile').style.display = 'block';
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Error parsing token:', e);
+                }
+                
+                // Clear invalid token
+                localStorage.removeItem('google_auth_token');
+            }
+            
+            // Check for regular user login
+            const userData = localStorage.getItem('freelance_user');
+            if (userData) {
+                try {
+                    const user = JSON.parse(userData);
+                    document.getElementById('userName').textContent = user.name;
+                    document.getElementById('userEmail').textContent = user.email;
+                    document.getElementById('userPhoto').src = user.picture;
+                    
+                    document.querySelector('.signin-options').style.display = 'none';
+                    document.querySelector('.signup-link').style.display = 'none';
+                    document.getElementById('profile').style.display = 'block';
+                    return;
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                    localStorage.removeItem('freelance_user');
+                }
+            }
+        }
+        
+        // Initialize authentication when page loads
+        window.onload = function() {
+            initializeGoogleSignIn();
+            checkAuthStatus();
+        };
+    </script>
+</body>
+</html>

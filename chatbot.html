@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Chat</title>
+</head>
+<!-- <link rel="stylesheet" href="chatcss.css"> -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f5f5f5;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-container {
+        max-width: 800px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .chat-header {
+        background: #0e1e40;
+        color: white;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .chat-header img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .chat-header h2 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .status {
+        font-size: 12px;
+        color: #ccc;
+    }
+
+    .chat-box {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: #f9f9f9;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        max-width: 80%;
+        position: relative;
+    }
+
+    .message p {
+        padding: 10px 15px;
+        border-radius: 18px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .message .timestamp {
+        font-size: 11px;
+        color: #777;
+        margin-top: 5px;
+        display: block;
+    }
+
+    .client {
+        align-self: flex-start;
+        margin-right: auto;
+    }
+
+    .client p {
+        background-color: #e9eaf6;
+        color: #333;
+        border-bottom-left-radius: 5px;
+    }
+
+    .freelancer {
+        align-self: flex-end;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .freelancer p {
+        background-color: #1e88e5;
+        color: white;
+        border-bottom-right-radius: 5px;
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 15px;
+        background-color: white;
+        border-top: 1px solid #eee;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .chat-input button {
+        background-color: #1e88e5;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="WhatsApp Image 2025-04-19 at 11.37.34.jpeg" alt="Profile">
+            <div>
+                <h2>Freelancer Chat</h2>
+                <span class="status">Online</span>
+            </div>
+        </div>
+
+        <!-- <div class="user-selector">
+          <label>
+            <input type="radio" name="user-type" value="client" checked> I'm the Client
+          </label>
+          <label>
+            <input type="radio" name="user-type" value="freelancer"> I'm the Freelancer
+          </label>
+        </div> -->
+
+        <div id="chat-box" class="chat-box">
+
+            <div class="message system" style="text-align: center; width: 100%; max-width: 100%;">
+                <p
+                    style="background-color: #f0f2f5; display: inline-block; padding: 8px 12px; border-radius: 10px; color: #555; font-size: 12px;">
+                    Chat started. Say hello!
+                </p>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+</body>
+<!-- <script src="chat.js"></script> -->
+<script>
+    const chatBox = document.getElementById('chat-box');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const userTypeRadios = document.getElementsByName('user-type');
+
+
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        messageDiv.innerHTML = `
+    <p>${text}</p>
+    <span class="timestamp">${timestamp}</span>
+  `;
+
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+
+    function sendMessage() {
+        const text = messageInput.value.trim();
+        if (text === '') return;
+
+
+        let sender = 'client';
+        for (const radio of userTypeRadios) {
+            if (radio.checked) {
+                sender = radio.value;
+                break;
+            }
+        }
+
+        addMessage(text, sender);
+        messageInput.value = '';
+    }
+
+
+    sendButton.addEventListener('click', sendMessage);
+
+    messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+
+    setTimeout(() => {
+        if (chatBox.childElementCount <= 1) {
+            addMessage("Welcome to our platform! How can I help with your project today?", "freelancer");
+        }
+    }, 1000);
+</script>
+
+</html>
