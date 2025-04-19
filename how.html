@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - FreelanceHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    /* Header Styles */
+    header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .logo span {
+        font-family: 'Poppins', sans-serif;
+        color: #000000;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+    }
+
+    .nav-links li {
+        margin-left: 2rem;
+    }
+
+    .nav-links a {
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #3a86ff;
+    }
+
+    .btn {
+        font-family: 'Poppins', sans-serif;
+        background-color: #3a86ff;
+        color: white;
+        padding: 0.7rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+        background-color: #2667cc;
+        transform: translateY(-2px);
+    }
+
+    /* Banner Section */
+    .banner {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #6051ae 0%, #c0e7e6 100%);
+        padding: 8rem 2rem 4rem;
+        text-align: center;
+        color: white;
+    }
+
+    .banner h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+    }
+
+    .banner p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        opacity: 0.9;
+    }
+
+    /* Process Section */
+    .process {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .section-title p {
+        font-family: 'Poppins', sans-serif;
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+        font-family: 'Poppins', sans-serif;
+        background: none;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #666;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-bottom: 3px solid transparent;
+    }
+
+    .tab-btn.active {
+        color: #3a86ff;
+        border-bottom: 3px solid #3a86ff;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .steps {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .step {
+        font-family: 'Poppins', sans-serif;
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        max-width: 380px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .step:hover {
+        transform: translateY(-10px);
+    }
+
+    .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: #3a86ff;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+    }
+
+    .client-steps .step-number {
+        background: #3a86ff;
+    }
+
+    .freelancer-steps .step-number {
+        background: #ff006e;
+    }
+
+    .step h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .step p {
+        font-family: 'Poppins', sans-serif;
+        color: #666;
+    }
+
+    /* FAQ Section */
+    .faq {
+        padding: 5rem 2rem;
+        background-color: #f0f4f8;
+    }
+
+    .faq-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .faq-item {
+        background: white;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    .faq-question {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-answer {
+        font-family: 'Poppins', sans-serif;
+        padding: 0 1.5rem 1.5rem;
+        color: #666;
+    }
+
+    /* CTA Section */
+    .cta {
+        font-family: 'Poppins', sans-serif;
+        padding: 5rem 2rem;
+        background: linear-gradient(135deg, #6051ae 0%, #c0e7e6 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .cta-container {
+        font-family: 'Poppins', sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .cta h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta p {
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    .cta .btn {
+        font-family: 'Poppins', sans-serif;
+        background-color: white;
+        color: #6193ad;
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+        margin: 0 0.5rem;
+    }
+
+    .cta .btn:hover {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .btn-dark {
+        background-color: #2d3748 !important;
+        color: white !important;
+    }
+
+    .btn-dark:hover {
+        background-color: #1a202c !important;
+    }
+
+    /* Footer */
+    footer {
+        font-family: 'Poppins', sans-serif;
+        background-color: #2d3748;
+        color: white;
+        padding: 4rem 2rem 2rem;
+    }
+
+    .footer-container {
+        font-family: 'Poppins', sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+    }
+
+    .footer-col h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: #fff;
+    }
+
+    .footer-col ul {
+        font-family: 'Poppins', sans-serif;
+        list-style: none;
+    }
+
+    .footer-col ul li {
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-col ul li a {
+        font-family: 'Poppins', sans-serif;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+        color: white;
+    }
+
+    .social-links {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        font-family: 'Poppins', sans-serif;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .copyright {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 3rem;
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .steps {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .step {
+            width: 100%;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Freelance's <span>Hub</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html" class="active">How it Works</a></li>
+                <li><a href="#">Browse Jobs</a></li>
+                <li><a href="#">Freelancers</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <button class="btn">Sign Up</button>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <h1>How FreelanceHub Works</h1>
+        <p>Your complete guide to connecting, collaborating, and succeeding in the freelance marketplace</p>
+    </section>
+
+    <section class="process">
+        <div class="section-title">
+            <h2>Simple Process, Powerful Results</h2>
+            <p>Whether you're looking to hire talent or find freelance work, our platform makes it easy to connect and collaborate.</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('client')">For Clients</button>
+            <button class="tab-btn" onclick="openTab('freelancer')">For Freelancers</button>
+        </div>
+
+        <div id="client" class="tab-content active">
+            <div class="steps client-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Post Your Project</h3>
+                    <p>Create a detailed job posting describing your project requirements, timeline, and budget. Be specific to attract the right talent.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Review Proposals</h3>
+                    <p>Receive tailored proposals from qualified freelancers. Review their profiles, portfolios, and ratings to find the perfect match for your project.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Hire & Collaborate</h3>
+                    <p>Select your preferred freelancer, discuss details, and use our secure workspace for communication, file sharing, and milestone tracking.</p>
+                </div>
+            </div>
+            <div class="steps client-steps">
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor project development through milestones, provide feedback, and request revisions as needed to ensure quality results.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Leave Feedback</h3>
+                    <p>Rate your experience and provide valuable feedback to help the freelancer grow and assist other clients in making informed decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="freelancer" class="tab-content">
+            <div class="steps freelancer-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create Your Profile</h3>
+                    <p>Build a compelling profile showcasing your skills, experience, portfolio, and competitive rates to stand out to potential clients.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Browse Available Jobs</h3>
+                    <p>Explore our job marketplace to find projects that match your skills and interests, filtering by category, budget, and duration.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Submit Proposals</h3>
+                    <p>Send personalized proposals that highlight your relevant experience and explain your approach to the project to increase your chances of being hired.</p>
+                </div>
+            </div>
+            <div class="steps freelancer-steps">
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Communicate & Deliver</h3>
+                    <p>Use our platform to discuss project details, share files, and deliver high-quality work that meets or exceeds client expectations.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Build Your Reputation</h3>
+                    <p>Collect positive reviews and ratings to enhance your profile, increase visibility, and attract more clients for future projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about using FreelanceHub</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    How much does it cost to join FreelanceHub?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Creating an account on FreelanceHub is completely free for both clients and freelancers. 
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I hire freelancers for long-term projects?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! FreelanceHub supports both short-term projects and long-term engagements. For ongoing work, you can set up milestone payments or hourly contracts. Many successful client-freelancer relationships on our platform evolve into long-term partnerships.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    How do I know a freelancer is qualified?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Every freelancer on our platform has a detailed profile showing their skills, portfolio, work history, and client reviews. Many freelancers also complete skill assessments and verification processes. You can review all this information before making a hiring decision to ensure they're the right fit for your project.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    What if I'm not satisfied with the work?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    If you're not satisfied with the delivered work, you can request revisions based on the original project requirements. Communication is key - most issues can be resolved through clear feedback. If necessary, our dispute resolution team can mediate to find a fair solution for both parties.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of businesses and freelancers who are successfully collaborating on FreelanceHub</p>
+            <div>
+                <button class="btn">Hire a Freelancer</button>
+                <button class="btn btn-dark">Become a Freelancer</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>FreelanceHub</h3>
+                <p>Connecting talented freelancers with businesses worldwide since 2018.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>For Clients</h3>
+                <ul>
+                    <li><a href="#">How to Hire</a></li>
+                    <li><a href="#">Talent Marketplace</a></li>
+                    <li><a href="#">Enterprise Solutions</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Hiring Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>For Freelancers</h3>
+                <ul>
+                    <li><a href="#">How to Find Work</a></li>
+                    <li><a href="#">Direct Contracts</a></li>
+                    <li><a href="#">Freelancer Community</a></li>
+                    <li><a href="#">Freelancer Resources</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Help & Support</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Community Forum</a></li>
+                    <li><a href="#">Affiliate Program</a></li>
+                    <li><a href="#">Partnership Opportunities</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FreelanceHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab content
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tab buttons
+            var tabButtons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Show the selected tab content and activate the button
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        function toggleFAQ(element) {
+            // Toggle the display of the answer
+            var answer = element.nextElementSibling;
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                element.querySelector("i").className = "fas fa-chevron-down";
+            } else {
+                answer.style.display = "block";
+                element.querySelector("i").className = "fas fa-chevron-up";
+            }
+        }
+
+        // Initialize FAQs to be closed
+        document.addEventListener("DOMContentLoaded", function() {
+            var answers = document.getElementsByClassName("faq-answer");
+            for (var i = 0; i < answers.length; i++) {
+                answers[i].style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
